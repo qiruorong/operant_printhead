@@ -33,6 +33,7 @@ def acquireIntanPrinthead(protocol):
                 indentStart = 0
             else:
                 indentStart = int((i-1) * (sweepDuration/numPositions) * Fs)
+                
 
             indentEnd = indentStart + indentDur_samples
             if indentEnd > sweepDurationinSamples:
