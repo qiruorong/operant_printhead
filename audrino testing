@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+// Set pin number
+int inputPin = 2;
+int outputPin = 13;
+
+void setup() {
+  pinMode(inputPin, INPUT);
+  pinMode(outputPin, OUTPUT);
+}
+
+void loop() {
+  int inputState = digitalRead(2);
+
+  if (inputState == HIGH) {
+    digitalWrite(outputPin, HIGH);
+  }
+  else {
+    digitalWrite(outputPin, LOW);
+  }
+}
