@@ -27,17 +27,33 @@ while True:
 # check the value of reward pin
 # if high -> reward,record time,save
 
+################ interrupt when lick #############################
+lickPinIn = 0
+debounce_time = 0
+pin = Pin(4, Pin.IN, Pin.PULL_DOWN)
+valvePinOut = Pin(0,Pin.OUT)
+count=0
+
 lickTimestamps = []
 def lickCallback():
     lickTimestamps.append(utime.time())
-    if rewardPinIn.value() == 1:
-        valvePinOut.high()
+    global lickPinIn, debounce_time
+    if (time.ticks_ms()-debounce_time) > 100:
+        lickPinIn = 1
+        debounce_time = time.ticks_ms()
+
+pin.irq(trigger=Pin.IRQ_RISING, handler=callback)
+
+while True:
+     if lickPinIn == GPIO.HIGH and rewardPinIn == GPIO.HIGH:
+        GPIO.output(valvePinOut, GPIO.HIGH)
         utime.sleep(valveOpenDuration)
-        valvePinOut.low()
-    ## save timestamps
-    np.save('filenameTBD.npy',np.array(lickTimestamps))
-    
-    
+        GPIO.output(valvePinOut, GPIO.LOW)
+        print("Lick Detected")
+        np.save('filenameTBD.npy',np.array(lickTimestamps))
+        
+#########################################################      
+   
 ## key items to save
 # lick times
 # trial starts
