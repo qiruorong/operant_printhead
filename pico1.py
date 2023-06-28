@@ -76,12 +76,11 @@ def runTrial():
     utime.sleep(5)
   trialPin.value(0)
 
-while True:
-    user_input = input("Press Enter to start the trial")
-    if user_input == "":
-       trialPin.value(1)
-       runTrial
-       trialstartTimestamps = []
-       trialstartTimestamps.append(utime.time())
-       print("Trial begin")
-    np.save('filenameTBD.npy',np.array(trialstartTimestamps))
+for i in range(100):
+    while True:
+        if trialPin.value(1):
+            runTrial
+            trialstartTimestamps = []
+            trialstartTimestamps.append(utime.time())
+            print("Trial begin")
+        np.save('filenameTBD.npy',np.array(trialstartTimestamps))
