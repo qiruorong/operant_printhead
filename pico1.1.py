@@ -22,7 +22,7 @@ pinOrder = [1, 13, 2, 14, 3, 15, 4, 16, 5, 17, 6, 18, 7, 19, 8, 20, 9, 21, 10, 2
 time_pin = (overlap * time_stim) / (24 + overlap - 1)
 time_pin_samples = int(math.floor(time_pin * Fs)) ## time_pin_samples = int(np.floor(time_pin * Fs))
 numSamples = int(time_stim*Fs)
-stim = [[0] * numSamples for _ in range(24)] ## stim = np.zeros((24, numSamples))
+stim = [[0] * numSamples for _ in range(24)] ## stim = np.zeros((24, numSamples)), try uarray for micropython
 revStim = stim[::-1] ## revStim = np.flip(stim)
 trialstartTimestamps = []
 file = open("trialstartTimestamps.txt","w")
