@@ -6,7 +6,7 @@ led = Pin(25, Pin.OUT)
 lick = Pin(14, Pin.IN, Pin.PULL_DOWN)
 solenoidOpenTimestamps = []
 # lickTimestamps = []
-file = open("solenoidOpenTimestamps1.txt","w")
+file = open("solenoidOpenTimestamps.txt","w")
 
 while True:
     if lick.value():
