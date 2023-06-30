@@ -41,7 +41,7 @@ for i in range(24): # for each pin
     if indentEnd > time_stim * Fs:
         indentEnd = int(math.floor(time_stim * Fs - 1)) ## indentEnd = int(np.floor(time_stim * Fs - 1))
     stim[pinOrder[i]-1, indentStart:indentEnd] = 1
-
+# if doesnt work, use uarray
 def stimDir1():
    global stim
    outputArray = stim
